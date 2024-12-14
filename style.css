@@ -1,0 +1,33 @@
+body {
+     background: url('https://source.unsplash.com/1920x1080/?event,concert') no-repeat center center fixed;
+     background-size: cover;
+     height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .login-container {
+     background: rgba(255, 255, 255, 0.85);
+     padding: 30px;
+     border-radius: 10px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+     max-width: 400px;
+     width: 100%;
+ }
+
+ .login-container h2 {
+     margin-bottom: 20px;
+     text-align: center;
+     font-weight: bold;
+ }
+
+ .btn-custom {
+     background-color: #007bff;
+     color: #fff;
+     font-weight: bold;
+ }
+
+ .btn-custom:hover {
+     background-color: #0056b3;
+ }
