@@ -1,14 +1,17 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBE2V5WybBc4Ba6-_2wXN2YYFrHDD45-pk",
-  authDomain: "event-manager-162ea.firebaseapp.com",
-  projectId: "event-manager-162ea",
-  storageBucket: "event-manager-162ea.firebasestorage.app",
-  messagingSenderId: "1020569244856",
-  appId: "1:1020569244856:web:e1fa0df6103a2fe30bd04d",
-  measurementId: "G-QKW2NCGFVW"
+  apiKey: "AIzaSyDY2TgJruQAI8GH9Pnj5eqCLmcRMJg9g94",
+  authDomain: "event-manager-for-college.firebaseapp.com",
+  projectId: "event-manager-for-college",
+  storageBucket: "event-manager-for-college.firebasestorage.app",
+  messagingSenderId: "281449396649",
+  appId: "1:281449396649:web:b62db61aedf9105966ecb8"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);

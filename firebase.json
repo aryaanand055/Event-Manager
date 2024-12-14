@@ -1,0 +1,17 @@
+{
+  "emulators": {
+    "dataconnect": {
+      "dataDir": "dataconnect/.dataconnect/pgliteData"
+    }
+  },
+  "dataconnect": {
+    "source": "dataconnect"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "hosting":{
+    "site": "event-manager-for-college-6a02a",
+    "public": "public"
+  }
+}
