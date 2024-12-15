@@ -7,22 +7,27 @@ body {
     height: 100vh;
     margin: 0;
     color: #333;
+    
 }
-.dashboard-container {
+.signup-container {
+   
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
+    padding-right : 20px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 350px;
     text-align: center;
+   
 }
-.dashboard-container h1 {
+.signup-container h1 {
     font-size: 2em;
     margin-bottom: 20px;
 }
 .form-group {
     margin-bottom: 15px;
     text-align: left;
+    margin-right: 20px;
 }
 .form-group label {
     display: block;
@@ -32,6 +37,7 @@ body {
 .form-group input {
     width: 100%;
     padding: 10px;
+   
     border: 1px solid #ced4da;
     border-radius: 5px;
     outline: none;
@@ -54,16 +60,4 @@ body {
 }
 .btn:hover {
     background-color: #0056b3;
-}
-.switch-container {
-    margin-top: 15px;
-    font-size: 0.9em;
-}
-.switch-container a {
-    color: #007bff;
-    text-decoration: underline;
-    cursor: pointer;
-}
-.switch-container a:hover {
-    text-decoration: none;
 }
