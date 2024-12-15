@@ -8,7 +8,7 @@ body {
     margin: 0;
     color: #333;
 }
-.dashboard-container {
+.login-container {
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 15px;
@@ -16,7 +16,7 @@ body {
     width: 350px;
     text-align: center;
 }
-.dashboard-container h1 {
+.login-container h1 {
     font-size: 2em;
     margin-bottom: 20px;
 }
