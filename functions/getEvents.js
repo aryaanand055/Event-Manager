@@ -1,14 +1,13 @@
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb+srv://arya:Cookies@12@cluster0.tb4ew.mongodb.net/";
-
+const uri = "mongodb+srv://Arya:Cookies%4012@cluster0.tb4ew.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const client = new MongoClient(uri);
 
 exports.handler = async (event, context) => {
     try {
         await client.connect();
-        const database = client.db("event_manager");
-        const events = database.collection("events");
+        const database = client.db("BUILD-a-SITE");
+        const events = database.collection("students");
         const result = await events.find({}).toArray();
         return {
             statusCode: 200,
