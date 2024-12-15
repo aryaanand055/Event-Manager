@@ -7,7 +7,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
     const confirmPassword = document.getElementById('confirm-password').value;
 
     try {
-        const response = await fetch('/signup', {
+        const response = await fetch("http://localhost:8888/signup", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
         const data = await response.json();
         if (response.ok) {
             alert('Sign-up successful!');
-            window.location.href = '/login';  // Redirect to login page
+            window.location.href = 'http://localhost:8888/login';  // Redirect to login page
         } else {
             alert(data.message);  // Show error message
         }

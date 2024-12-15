@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 5500;  // Change to your preferred port
+const port = 8888;  // Change to your preferred port
 
 // MongoDB connection URI (replace with your actual connection string)
 const uri = "mongodb+srv://Arya:Cookies%4012@cluster0.tb4ew.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";

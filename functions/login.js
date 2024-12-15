@@ -5,7 +5,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('/login', {
+        const response = await fetch('http://localhost:8888/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -16,7 +16,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
         const data = await response.json();
         if (response.ok) {
             alert('Login successful!');
-            window.location.href = '/dashboard';  // Redirect to the dashboard page
+            window.location.href = 'http://localhost:8888/dashboard';  // Redirect to the dashboard page
         } else {
             alert(data.message);  // Show error message
         }
