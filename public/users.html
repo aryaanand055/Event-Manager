@@ -27,13 +27,11 @@
       .then(response => response.json())
       .then(users => {
         const userList = document.getElementById("user-list");
-
-        // Check if users exist and render the list
         if (users && users.length > 0) {
           users.forEach(user => {
             const userItem = document.createElement("a");
             userItem.classList.add("list-group-item", "list-group-item-action");
-            userItem.innerText = `Name: ${user.name} - Email: ${user.email}`; // Modify fields based on your user data
+            userItem.innerText = `Name: ${user.name} - Email: ${user.email}`;
 
             userList.appendChild(userItem);
           });

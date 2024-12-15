@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Handler</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h2>Club Management</h2>
+
+    <!-- Club Info Section -->
+    <section id="club-info" class="mb-5">
+      <h3>Club Details</h3>
+      <form id="club-form">
+        <div class="mb-3">
+          <label for="club-name" class="form-label">Club Name</label>
+          <input type="text" class="form-control" id="club-name" required>
+        </div>
+        <div class="mb-3">
+          <label for="club-description" class="form-label">Description</label>
+          <textarea class="form-control" id="club-description" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Club Info</button>
+      </form>
+    </section>
+
+    <!-- Admins Section -->
+    <section id="admins" class="mb-5">
+      <h3>Club Admins</h3>
+      <ul id="admins-list" class="list-group">
+        <!-- List of members will be dynamically inserted here -->
+      </ul>
+    </section>
+    <!-- Members Section -->
+    <section id="members" class="mb-5">
+      <h3>Club Members</h3>
+      <ul id="members-list" class="list-group">
+        <!-- List of members will be dynamically inserted here -->
+      </ul>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="mb-5">
+      <h3>Club Events</h3>
+      <div id="events-list">
+        <!-- List of events will be dynamically inserted here -->
+      </div>
+      <button class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#scheduleEventModal">Schedule New Event</button>
+    </section>
+
+    <!-- Modal for Scheduling Events -->
+    <div class="modal fade" id="scheduleEventModal" tabindex="-1" aria-labelledby="scheduleEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="scheduleEventModalLabel">Schedule New Event</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="event-form">
+              <div class="mb-3">
+                <label for="event-name" class="form-label">Event Name</label>
+                <input type="text" class="form-control" id="event-name" required>
+              </div>
+              <div class="mb-3">
+                <label for="event-date" class="form-label">Event Date</label>
+                <input type="date" class="form-control" id="event-date" required>
+              </div>
+              <div class="mb-3">
+                <label for="event-description" class="form-label">Event Description</label>
+                <textarea class="form-control" id="event-description" rows="3" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Schedule Event</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Get club name from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    // const clubName = urlParams.get('name'); // Get 'name' parameter
+    // console.log(clubName)
+    // if (clubName) {
+    // Fetch the club details using the clubName in the URL
+    fetch(`/.netlify/functions/getClub?name=sports`)
+
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        // Update the club name and description in the page
+        document.getElementById("club-name").value = data.club.name;
+        document.getElementById("club-description").value = data.club.description;
+
+        // Populate members
+        const membersList = document.getElementById("members-list");
+        data.members.forEach(member => {
+          const memberItem = document.createElement("li");
+          memberItem.className = "list-group-item";
+          memberItem.textContent = member.name;
+          membersList.appendChild(memberItem);
+        });
+        const adminsList = document.getElementById("admins-list");
+        data.club.admins.forEach(member => {
+          const memberItem = document.createElement("li");
+          memberItem.className = "list-group-item";
+          memberItem.textContent = member;
+          adminsList.appendChild(memberItem);
+        });
+
+        // Populate events
+        const eventsList = document.getElementById("events-list");
+        data.events.forEach(event => {
+          const eventCard = document.createElement("div");
+          eventCard.className = "card mb-3";
+          eventCard.innerHTML = `
+              <div class="card-body">
+                <h5 class="card-title">${event.name}</h5>
+                <p class="card-text">${event.description}</p>
+                <p class="card-text">${event.date}</p>
+              </div>
+            `;
+          eventsList.appendChild(eventCard);
+        });
+      })
+      .catch(error => console.error("Error fetching club details:", error));
+    // }
+  </script>
+
+</body>
+
+</html>

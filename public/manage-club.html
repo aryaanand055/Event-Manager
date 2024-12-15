@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Club - Club Event Manager</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .manage-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .manage-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 40px;
+    }
+
+    .create-club-form {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Club Event Manager</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Manage Club Section -->
+  <section class="container manage-header">
+    <h1>Manage Your Club</h1>
+    <p class="lead">Edit your club details, manage members, and events</p>
+  </section>
+
+  <!-- Clubs the user owns or has admin access to -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Your Clubs</h2>
+      <div id="clubs-container">
+        <!-- Clubs will be dynamically loaded here -->
+        <!-- Example of club card -->
+        <!--
+        <div class="manage-card">
+          <h5>Club Name: [Club Name]</h5>
+          <p>Description: [Description]</p>
+          <a href="#" class="btn btn-primary">Edit Club</a>
+        </div>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Create New Club Section -->
+  <section>
+    <div class="container create-club-form">
+      <h2 class="section-title">Create New Club</h2>
+      <form id="create-club-form">
+        <div class="mb-3">
+          <label for="club-name" class="form-label">Club Name</label>
+          <input type="text" class="form-control" id="club-name" required>
+        </div>
+        <div class="mb-3">
+          <label for="club-description" class="form-label">Description</label>
+          <textarea class="form-control" id="club-description" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Create Club</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <p>&copy; 2024 Club Event Manager | All Rights Reserved</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Example function to simulate loading clubs from a database (replace with actual data fetching)
+    function loadClubs() {
+      const clubs = [{
+          name: "Science Club",
+          description: "A club for science enthusiasts."
+        },
+        {
+          name: "Art Club",
+          description: "A club for creative minds."
+        },
+        {
+          name: "Tech Club",
+          description: "A club for technology and coding."
+        },
+      ];
+
+      const clubsContainer = document.getElementById("clubs-container");
+
+      clubs.forEach(club => {
+        const clubCard = document.createElement("div");
+        clubCard.classList.add("manage-card");
+        clubCard.innerHTML = `
+          <h5>Club Name: ${club.name}</h5>
+          <p>Description: ${club.description}</p>
+          <a href="#" class="btn btn-primary">Edit Club</a>
+        `;
+        clubsContainer.appendChild(clubCard);
+      });
+    }
+
+    // Load clubs when page loads
+    window.onload = loadClubs;
+
+    // Handle create club form submission
+    // Handle create club form submission
+
+
+
+    document.getElementById("create-club-form").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const clubName = document.getElementById("club-name").value;
+      const clubDescription = document.getElementById("club-description").value;
+
+      // Replace with the actual IDs of users who will be admins
+      const adminIds = ["userId1", "userId2"]; // This should be dynamically populated
+      console.log(clubName, clubDescription)
+
+      fetch("/.netlify/functions/createClub", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: clubName,
+            description: clubDescription,
+            adminIds: ["user1", "user2"], // Example admin IDs
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Club created:", data);
+        })
+        .catch((error) => {
+          console.error("Error creating club:", error);
+        });
+
+    });
+  </script>
+
+</body>
+
+</html>
